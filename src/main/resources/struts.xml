@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- 定义处理用户请求的Action，该Action的class属性不是实际处理类 , 而是Spring容器中的Bean实例 -->
+		<action name="register" class="register">
+			<result name="input">/Register.jsp</result>
+			<result name="success">/success.jsp</result>
+			<result name="error">/fail.jsp</result>
+		</action>
+		
+		<action name="userList" class="listUserAction">
+			<result name="success">/WEB-INF/jsp/list.jsp</result>
+		</action>
+		
+		<action name="toSaveView" class="saveUserAction" method="toSaveView">
+			<result name="success"> /WEB-INF/jsp/save.jsp</result>
+		</action>
+		
+		<action name="saveUser" class="saveUserAction">
+			<result name="success" type="redirect">userList</result>
+		</action>
+		
+		<action name="deleteUser" class="deleteUserAction">
+			<result name = "success" type="redirect">userList</result>
+		</action>
+		
+		<action name="toUpdateView" class="updateUserAction" method="toUpdateView">
+			<result name="success">/WEB-INF/jsp/update.jsp</result>
+		</action>
+		<action name="updateUser" class="updateUserAction">
+			<result name="success" type="redirect">userList</result>
+		</action>
+		
+		<action name="findUser" class="listUserAction" method="findUserById">
+			<result name = "success" type="redirect">userList</result>
+		</action>
+	</package>
+
+</struts>
